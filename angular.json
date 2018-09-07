@@ -129,5 +129,15 @@
       }
     }
   },
-  "defaultProject": "the-complete-angular-react-node-guide"
+  "defaultProject": "the-complete-angular-react-node-guide",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "spec": false
+      }
+    },
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

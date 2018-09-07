@@ -1,8 +1,12 @@
+import { routerConfig } from './router.config';
 import { HeaderComponent } from './common/header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { RentalModule } from 'src/app/rental/rental.module';
+import { RentalService } from 'src/app/rental/shared/rental.service';
 
 @NgModule({
   declarations: [
@@ -10,9 +14,11 @@ import { AppComponent } from './app.component';
     HeaderComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routerConfig),
+    RentalModule
   ],
-  providers: [],
+  providers: [RentalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
