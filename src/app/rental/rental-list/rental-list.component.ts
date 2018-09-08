@@ -1,3 +1,4 @@
+import { RentalStoreService } from './../shared/rental.store.service';
 import { Rental } from 'src/app/rental/shared/rental.model';
 import { Component, OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -15,7 +16,7 @@ export class RentalListComponent implements OnInit, OnDestroy {
   destroy$ = new Subject()
   rentals
 
-  constructor(public rentalSrvc:RentalService) { }
+  constructor(public rentalStoreSrvc:RentalStoreService) { }
 
   ngOnInit() {
     this.subscribeToRentals()
@@ -27,14 +28,17 @@ export class RentalListComponent implements OnInit, OnDestroy {
 
 
   subscribeToRentals(){
-    this.rentalSrvc.getRentals()
+    this.rentalStoreSrvc.getRentals()
     .pipe(
       takeUntil(
         this.destroy$
       )
     )
-    .subscribe(rentals=>{
+    .subscribe((rentals: any[])=>{
+      if(rentals.length > 0){
+      console.log(rentals)
       this.rentals = rentals
+    }
     })
   }
 

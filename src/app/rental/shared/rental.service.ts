@@ -1,18 +1,19 @@
+import { HttpErrorResponse } from '@angular/common/http/src/response';
+import { RentalStoreService } from 'src/app/rental/shared/rental.store.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Rental } from 'src/app/rental/shared/rental.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class RentalService {
   private destroy$ = new Subject()
-  private rentalsStore = new BehaviorSubject<Rental[]>([new Rental()])
-  private rentalsObservable = this.rentalsStore.asObservable()
     
 
-  constructor() {
+  constructor(private http:HttpClient, private rentalStoreSrvc:RentalStoreService) {
     
   }
 
@@ -20,27 +21,34 @@ export class RentalService {
     this.destroy$.next(true)
   }
 
+  getRentalsById(id): Observable<any>{
+    return new Observable<any>((observer)=>{
 
-  getRentals(): Observable<Rental[]>{
-    return this.rentalsObservable
-  }
-
-  getRentalsById(id): Observable<Rental>{
-    return new Observable<Rental>((observer)=>{
-      var destroy$ = new Subject()
-      this.rentalsObservable
-      .pipe(
-        takeUntil(destroy$)
+      this.http.get('/api/v1/rentals/' + id)
+      .subscribe(
+        data=>{
+          observer.next(data)
+        },
+        (error: HttpErrorResponse) =>{
+          observer.error(error.message)          
+        }
       )
-      .subscribe(rentals=>{
-        observer.next(rentals.find((r)=> r.id == id))
-        destroy$.next(true)
-      })
+    })
+  }
+  getRentals(): Observable<any>{
+    return new Observable<any>((observer)=>{
+
+      this.http.get('/api/v1/rentals')
+      .subscribe(
+        data=>{
+          this.rentalStoreSrvc.setRentals(data)
+          observer.next('ok')
+        },
+        (error: HttpErrorResponse) =>{
+          observer.error(error.message)          
+        }
+      )
     })
   }
 
-
-  setRentals(rentals){
-    this.rentalsStore.next(rentals)
-  }
 }

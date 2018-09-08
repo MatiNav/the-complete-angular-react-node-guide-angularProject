@@ -1,3 +1,5 @@
+import { RentalStoreService } from './shared/rental.store.service';
+import { RentalService } from 'src/app/rental/shared/rental.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentalComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor(private rentalSrvc: RentalService, private rentalStoreSrvc: RentalStoreService) {
+    this.rentalSrvc.getRentals()
+    .subscribe(
+      data=>{
+        console.log(data)},
+      error=>console.log(error)
+    )
+   }
 
   ngOnInit() {
   }

@@ -2,6 +2,8 @@ import { routerConfig } from './router.config';
 import { HeaderComponent } from './common/header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -16,9 +18,10 @@ import { RentalService } from 'src/app/rental/shared/rental.service';
   imports: [
     BrowserModule,
     RouterModule.forRoot(routerConfig),
-    RentalModule
+    RentalModule,
+    HttpClientModule,
   ],
-  providers: [RentalService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

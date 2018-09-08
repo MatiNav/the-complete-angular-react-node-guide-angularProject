@@ -6,6 +6,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
+import { RentalService } from 'src/app/rental/shared/rental.service';
+import { RentalStoreService } from 'src/app/rental/shared/rental.store.service';
+import {NgPipesModule} from 'ngx-pipes';
+import { UppercasePipe } from 'src/app/common/pipes/uppercase.pipe';
 
 
 @NgModule({
@@ -14,10 +18,16 @@ import { RentalDetailComponent } from './rental-detail/rental-detail.component';
         RentalListComponent,
         RentalListItemComponent,
         RentalDetailComponent,
+        UppercasePipe
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild(rentalRouterConfig)
+        RouterModule.forChild(rentalRouterConfig),
+        NgPipesModule        
+    ],
+    providers: [ 
+        RentalService,
+        RentalStoreService
     ]
 })
 export class RentalModule {}

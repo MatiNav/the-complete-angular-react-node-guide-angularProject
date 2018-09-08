@@ -4,7 +4,6 @@ class FakeDb {
 
     constructor(){
         this.rentals =[{
-            id: "1",
             title: "Central Apartment",
             city: "New York",
             street: "Times Sqaure",
@@ -13,9 +12,9 @@ class FakeDb {
             bedrooms: 3,
             description: "Very nice apartment",
             dailyRate: 34,
+            shared: false
           },
           {
-            id: "2",
             title: "Central Apartment 2",
             city: "San Francisco",
             street: "Main street",
@@ -24,9 +23,9 @@ class FakeDb {
             bedrooms: 2,
             description: "Very nice apartment",
             dailyRate: 12,
+            shared: false
           },
           {
-            id: "3",
             title: "Central Apartment 3",
             city: "Bratislava",
             street: "Hlavna",
@@ -35,9 +34,9 @@ class FakeDb {
             bedrooms: 2,
             description: "Very nice apartment",
             dailyRate: 334,
+            shared: true
           },
           {
-            id: "4",
             title: "Central Apartment 4",
             city: "Berlin",
             street: "Haupt strasse",
@@ -46,6 +45,7 @@ class FakeDb {
             bedrooms: 9,
             description: "Very nice apartment",
             dailyRate: 33,
+            shared: true
          }]
     }
 
