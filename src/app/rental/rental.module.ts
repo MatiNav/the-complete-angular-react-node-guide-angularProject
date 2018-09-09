@@ -10,6 +10,7 @@ import { RentalService } from 'src/app/rental/shared/rental.service';
 import { RentalStoreService } from 'src/app/rental/shared/rental.store.service';
 import {NgPipesModule} from 'ngx-pipes';
 import { UppercasePipe } from 'src/app/common/pipes/uppercase.pipe';
+import { MapModule } from 'src/app/common/map/map.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UppercasePipe } from 'src/app/common/pipes/uppercase.pipe';
     imports: [
         CommonModule,
         RouterModule.forChild(rentalRouterConfig),
-        NgPipesModule        
+        NgPipesModule,
+        MapModule        
     ],
     providers: [ 
         RentalService,
