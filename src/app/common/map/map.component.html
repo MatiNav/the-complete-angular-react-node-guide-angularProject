@@ -1,0 +1,12 @@
+
+<agm-map (mapReady)="onHandleMapReady()" [latitude]="lat" [longitude]="lng">
+  <agm-circle *ngIf="lat && lng" 
+  [radius]="800" 
+  [latitude]="lat" 
+  [longitude]="lng"
+  [fillColor]="'#F44336'"
+  [fillOpacity]="0.4"
+  ></agm-circle>
+</agm-map>
+
+
