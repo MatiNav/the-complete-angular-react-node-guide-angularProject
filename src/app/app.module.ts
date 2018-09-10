@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { RentalModule } from 'src/app/rental/rental.module';
 import { RentalService } from 'src/app/rental/shared/rental.service';
-import { MapModule } from 'src/app/common/map/map.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { MapModule } from 'src/app/common/map/map.module';
     RouterModule.forRoot(routerConfig),
     RentalModule,
     HttpClientModule,
-    MapModule
   ],
   providers: [],
   bootstrap: [AppComponent]
