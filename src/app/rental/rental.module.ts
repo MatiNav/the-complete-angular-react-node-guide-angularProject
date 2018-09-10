@@ -29,7 +29,8 @@ import { MapModule } from 'src/app/common/map/map.module';
     ],
     providers: [ 
         RentalService,
-        RentalStoreService
+        RentalStoreService,
+        
     ]
 })
 export class RentalModule {}
