@@ -28,9 +28,13 @@ export class RentalService {
       .subscribe(
         data=>{
           observer.next(data)
+          observer.complete()
+
         },
         (error: HttpErrorResponse) =>{
-          observer.error(error.message)          
+          observer.error(error.message) 
+          observer.complete()
+         
         }
       )
     })

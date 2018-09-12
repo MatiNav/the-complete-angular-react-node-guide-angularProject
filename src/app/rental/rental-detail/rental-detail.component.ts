@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { ActivatedRoute } from '@angular/router';
 import { RentalService } from 'src/app/rental/shared/rental.service';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
+import {  } from '@angular/core/src/metadata/directives';
+import { Rental } from 'src/app/rental/shared/rental.model';
 
 @Component({
   selector: 'app-rental-detail',
@@ -11,9 +13,10 @@ import { HttpErrorResponse } from '@angular/common/http/src/response';
   styleUrls: ['./rental-detail.component.scss']
 })
 export class RentalDetailComponent implements OnInit {
-  destroy$ = new Subject()
-  rental
 
+
+  destroy$ = new Subject()
+rental 
   constructor(private route: ActivatedRoute, private rentalSrvc: RentalService) { }
 
   ngOnInit() {

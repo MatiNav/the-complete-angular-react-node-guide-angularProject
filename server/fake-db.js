@@ -3,8 +3,8 @@ const User = require('./model/user')
 
 class FakeDb {
 
-    constructor(){
-        this.rentals =[{
+    constructor() {
+        this.rentals = [{
             title: "Central Apartment",
             city: "New York",
             street: "Times Sqaure",
@@ -14,8 +14,8 @@ class FakeDb {
             description: "Very nice apartment",
             dailyRate: 34,
             shared: false
-          },
-          {
+        },
+        {
             title: "Central Apartment 2",
             city: "San Francisco",
             street: "Main street",
@@ -25,8 +25,8 @@ class FakeDb {
             description: "Very nice apartment",
             dailyRate: 12,
             shared: false
-          },
-          {
+        },
+        {
             title: "Central Apartment 3",
             city: "Bratislava",
             street: "Hlavna",
@@ -36,8 +36,8 @@ class FakeDb {
             description: "Very nice apartment",
             dailyRate: 334,
             shared: true
-          },
-          {
+        },
+        {
             title: "Central Apartment 4",
             city: "Berlin",
             street: "Haupt strasse",
@@ -47,25 +47,25 @@ class FakeDb {
             description: "Very nice apartment",
             dailyRate: 33,
             shared: true
-         }]
+        }]
 
-         this.users = [{
-             username: 'Test user',
-             email: 'test@gmail.com',
-             password: 'testtest'
-         }]
+        this.users = [{
+            username: 'Test user',
+            email: 'test@gmail.com',
+            password: 'testtest'
+        }]
     }
 
-    async cleanDb(){
+    async cleanDb() {
         await User.deleteMany({})
         await Rental.deleteMany({})
     }
 
-    pushDataToDb(){
+    pushDataToDb() {
 
         const newUser = new User(this.users[0])
 
-        this.rentals.forEach((rental)=>{
+        this.rentals.forEach((rental) => {
             const newRental = new Rental(rental)
             newRental.user = newUser
             newUser.rentals.push(newRental)
@@ -75,11 +75,11 @@ class FakeDb {
         newUser.save()
     }
 
-    seedDb(){
-        this.cleanDb()
+    async seedDb() {
+        await this.cleanDb()
         this.pushDataToDb()
     }
-    
+
 
 }
 

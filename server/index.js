@@ -11,7 +11,7 @@ const userRoutes = require('./routes/users')
 mongoose.connect(config.DB_URL, { useNewUrlParser: true })
     .then((res) => {
         const fakeDb = new FakeDb()
-        fakeDb.seedDb()
+        // fakeDb.seedDb()
     })
 mongoose.set('useCreateIndex', true);
 

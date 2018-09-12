@@ -13,7 +13,6 @@ import { Subject } from 'rxjs/internal/Subject';
   styleUrls: ['./rental-list.component.scss']
 })
 export class RentalListComponent implements OnInit, OnDestroy {
-  destroy$ = new Subject()
   rentals
 
   constructor(public rentalStoreSrvc:RentalStoreService) { }
@@ -23,17 +22,11 @@ export class RentalListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.destroy$.next(true)
   }
 
 
   subscribeToRentals(){
     this.rentalStoreSrvc.getRentals()
-    .pipe(
-      takeUntil(
-        this.destroy$
-      )
-    )
     .subscribe((rentals: any[])=>{
       if(rentals.length > 0){
       console.log(rentals)
