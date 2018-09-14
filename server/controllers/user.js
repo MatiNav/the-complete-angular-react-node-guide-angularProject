@@ -95,9 +95,13 @@ exports.register = function (req, res) {
 
 exports.authMiddlewate = function (req, res, next) {
     const token = req.headers.authorization
-
+    let userReceived
     if (token) {
-        const userReceived = parseToken(token)
+        try {
+            userReceived = parseToken(token)
+        } catch (error) {
+            return res.status(422).send({ errors: [{ title: 'Not authorized!', description: 'invalid signature !!' }] })
+        }
         User.findById(userReceived.userId, function (err, user) {
             if (err) {
                 return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
