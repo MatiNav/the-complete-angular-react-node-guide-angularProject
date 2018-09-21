@@ -1,0 +1,6 @@
+module.exports= {
+    DB_URL: process.env.DB_URL,
+    SECRET: process.env.SECRET
+}
+
+// ACA LAS VARIABLES SE ENCUENTRAN EN HEROKU Y YO LAS UTILIZO PARA Q SEA SEGURO

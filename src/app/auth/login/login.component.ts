@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   notifyMessage= ''
   errors = []
 
-  constructor(private fb:FormBuilder, private formMethodsSrvc:FormMethodsService, private authSrvc:AuthService,
+  constructor(private fb:FormBuilder, public formMethodsSrvc:FormMethodsService, private authSrvc:AuthService,
               private router: Router, private route:ActivatedRoute) { }
 
   ngOnInit() {
@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/rentals'])
       },
       (errorResponse)=>{
+        debugger
         this.errors = errorResponse.error.errors
       }
     )

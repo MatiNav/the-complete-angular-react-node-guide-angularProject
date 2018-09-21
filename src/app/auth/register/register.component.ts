@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   formData: any = {}
   errors = []
 
-  constructor(private authSrvc: AuthService, private router:Router, private formMethodsSrvc:FormMethodsService) { }
+  constructor(private authSrvc: AuthService, private router:Router, public formMethodsSrvc:FormMethodsService) { }
 
   ngOnInit() {
   }
@@ -30,5 +30,7 @@ export class RegisterComponent implements OnInit {
       }
     )
   }
+
+  
 
 }

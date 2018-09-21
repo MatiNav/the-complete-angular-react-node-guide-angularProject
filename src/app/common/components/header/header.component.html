@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/rental">BookWithMe</a>
+  <div class="form-inline">
+    <input #searchInput (keyup.enter)="onSearch(searchInput.value)" class="form-control mr-sm-2 bwm-search" type="search" placeholder="Search"
+      aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0 btn-bwm-search" (click)="onSearch(searchInput.value)" type="button">Search</button>
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+      <ng-container *ngIf="!sessionSrvc.isAuthenticated()">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/auth/login">Login
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth/register">Register</a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="sessionSrvc.isAuthenticated()">
+        <div class="nav-item dropdown" clickable>
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Owner Section
+          </a>
+          <a  routerLink="/rental/new" (click)="alert()" >
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                <a class="dropdown-item" >Create Rental</a>
+              </div>
+          </a>
+        </div>
+        <li (click)="sessionSrvc.logout()" class="nav-item">
+          <a class="nav-link" routerLink="/auth/login">Logout</a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nav>

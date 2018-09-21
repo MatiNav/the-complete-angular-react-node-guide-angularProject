@@ -4,7 +4,7 @@ import {
     ActivatedRouteSnapshot,
     RouterStateSnapshot
 } from '@angular/router';
-import { SessionService } from 'src/app/shared/session.service';
+import { SessionService } from 'src/app/common/services/session.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

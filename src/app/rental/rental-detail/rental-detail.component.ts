@@ -4,8 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { RentalService } from 'src/app/rental/shared/rental.service';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
-import {  } from '@angular/core/src/metadata/directives';
-import { Rental } from 'src/app/rental/shared/rental.model';
 
 @Component({
   selector: 'app-rental-detail',

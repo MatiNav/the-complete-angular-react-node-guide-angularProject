@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RentalService } from 'src/app/rental/shared/rental.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +9,5 @@ export class AppComponent {
   title = 'the-complete-angular-react-node-guide';
 
   constructor(){  
-    
   }
 }

@@ -1,5 +1,4 @@
 import { RentalStoreService } from './../shared/rental.store.service';
-import { Rental } from 'src/app/rental/shared/rental.model';
 import { Component, OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { RentalService } from 'src/app/rental/shared/rental.service';

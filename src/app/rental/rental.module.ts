@@ -13,6 +13,11 @@ import { MapModule } from 'src/app/common/map/map.module';
 import { RentalRoutingModule } from 'src/app/rental/rental-routing.module';
 import { RentailDetailBookingComponent } from './rental-detail/rentail-detail-booking/rentail-detail-booking.component';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import { BookingRoutingModule } from 'src/app/booking/booking-routing.module';
+import { FormsModule } from '@angular/forms';
+import { BookingService } from 'src/app/booking/shared/booking.service';
+import { RentalSearchComponent } from 'src/app/rental/rental-search/rental-search.component';
+import { RentalCreateComponent } from './rental-create/rental-create.component';
 
 
 @NgModule({
@@ -22,19 +27,23 @@ import { Daterangepicker } from 'ng2-daterangepicker';
         RentalListItemComponent,
         RentalDetailComponent,
         UppercasePipe,
-        RentailDetailBookingComponent
+        RentailDetailBookingComponent,
+        RentalSearchComponent,
+        RentalCreateComponent
     ],
     imports: [
         CommonModule,
         NgPipesModule,
         MapModule,
         RentalRoutingModule,
-        Daterangepicker
+        Daterangepicker,
+        BookingRoutingModule,
+        FormsModule
     ],
     providers: [
         RentalService,
         RentalStoreService,
-
+        BookingService
     ]
 })
 export class RentalModule { }

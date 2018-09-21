@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { SessionStorageService } from 'src/app/shared/session.storage.service';
+import { SessionStorageService } from 'src/app/common/services/session.storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

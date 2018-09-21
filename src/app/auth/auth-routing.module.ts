@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RentalListComponent } from 'src/app/rental/rental-list/rental-list.component';
-import { AuthGuard } from 'src/app/shared/auth-guard.service';
+import { AuthGuard } from 'src/app/common/guards/auth-guard.service';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent, canActivate:[AuthGuard]},
