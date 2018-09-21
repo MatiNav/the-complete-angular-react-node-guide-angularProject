@@ -1,6 +1,10 @@
 {
   "name": "the-complete-angular-react-node-guide",
   "version": "0.0.0",
+  "engines": {
+    "node": "8.9.3",
+    "npm": "4.2.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "npm run start --prefix server",
