@@ -19,6 +19,7 @@ import { AuthInterceptor } from 'src/app/common/interceptors/auth.interceptor';
 import { HelperService } from 'src/app/common/services/helper.service';
 import { CommonAppModule } from 'src/app/common/commonApp.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     CommonAppModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    NgPipesModule
   ],
   providers: [
     AuthGuard,

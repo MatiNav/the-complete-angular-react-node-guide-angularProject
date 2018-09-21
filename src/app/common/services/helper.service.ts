@@ -1,6 +1,6 @@
 import { Booking } from 'src/app/booking/model/booking.model';
 import { Injectable } from '@angular/core';
-import * as moment from 'moment-mini-ts'
+import * as moment from 'moment'
 
 
 @Injectable()

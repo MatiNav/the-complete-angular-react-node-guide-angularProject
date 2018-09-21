@@ -2,7 +2,7 @@ import { Booking } from 'src/app/booking/model/booking.model';
 import { Rental } from 'src/app/rental/model/rental.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { HelperService } from 'src/app/common/services/helper.service';
-import * as moment from 'moment-mini-ts'
+import * as moment from 'moment'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookingService } from 'src/app/booking/shared/booking.service';
 

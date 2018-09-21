@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import * as moment from 'moment-mini-ts'
+import * as moment from 'moment'
 import { SessionStorageService } from 'src/app/common/services/session.storage.service';
 import { SessionService } from 'src/app/common/services/session.service';
 

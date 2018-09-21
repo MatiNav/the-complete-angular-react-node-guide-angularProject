@@ -30,6 +30,8 @@
     "@auth0/angular-jwt": "^2.0.0",
     "@ng-bootstrap/ng-bootstrap": "^3.2.0",
     "@types/jquery": "^3.2.12",
+    "@types/npm": "^2.0.29",
+    "angular2-moment": "^1.9.0",
     "bcrypt": "^3.0.0",
     "bootstrap": "^4.1.0",
     "core-js": "^2.5.4",
