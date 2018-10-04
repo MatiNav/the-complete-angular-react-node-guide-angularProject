@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { ActivatedRoute } from '@angular/router';
-import { RentalService } from 'src/app/rental/shared/rental.service';
+import { RentalService } from '../shared/services/rental.service';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 

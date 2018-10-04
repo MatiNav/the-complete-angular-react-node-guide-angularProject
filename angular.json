@@ -24,8 +24,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "../the-complete-angular-react-node-guide/node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "../the-complete-angular-react-node-guide/node_modules/font-awesome/css/font-awesome.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

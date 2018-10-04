@@ -14,11 +14,12 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SessionStorageService } from 'src/app/common/services/session.storage.service';
 import { SessionService } from 'src/app/common/services/session.service';
-import { AuthGuard } from 'src/app/common/guards/auth-guard.service';
 import { AuthInterceptor } from 'src/app/common/interceptors/auth.interceptor';
 import { HelperService } from 'src/app/common/services/helper.service';
 import { CommonAppModule } from 'src/app/common/commonApp.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgPipesModule } from 'ngx-pipes';
+import { AuthGuard } from 'src/app/common/guards/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     CommonAppModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    NgPipesModule
   ],
   providers: [
     AuthGuard,

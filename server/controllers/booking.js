@@ -2,7 +2,7 @@ const MongooseHelpers = require('../helpers/mongoose')
 const Booking = require('../model/booking')
 const Rental = require('../model/rental')
 const User = require('../model/user')
-const moment = require('moment-mini-ts')
+const moment = require('moment')
 
 
 exports.getBookingsOfUser = function (req, res) {

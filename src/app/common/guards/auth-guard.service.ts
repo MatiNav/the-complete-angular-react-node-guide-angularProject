@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
 import {
-    CanActivate, Router,
-    ActivatedRouteSnapshot,
-    RouterStateSnapshot
+    CanActivate, Router
+
 } from '@angular/router';
 import { SessionService } from 'src/app/common/services/session.service';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
     private url: string
 
-    constructor(private sessionSrvc:SessionService, private router: Router) { }
+    constructor(private sessionSrvc: SessionService, private router: Router, ) { }
 
-    private isLoginOrRegisterPage(): boolean {
-        if(this.url.includes('auth')){
+    private isLoginOrRegisterPage(state): boolean {
+        if (state.url.includes('auth')) {
             return true
         }
-
         return false
     }
 
-    private handleUserAuthenticated(): boolean{
-        if(this.isLoginOrRegisterPage()){
+    private handleUserAuthenticated(state): boolean {
+        if (this.isLoginOrRegisterPage(state)) {
             this.router.navigate(['/rental'])
             return false
         }
@@ -29,23 +28,21 @@ export class AuthGuard implements CanActivate {
         return true
     }
 
-    private handleUserNotAuthenticated(): boolean{
-        if(!this.isLoginOrRegisterPage()){
+    private handleUserNotAuthenticated(state): boolean {
+        if (!this.isLoginOrRegisterPage(state)) {
+            debugger
             this.router.navigate(['/auth'])
             return false
         }
 
         return true
     }
+    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        if (this.sessionSrvc.isAuthenticated()) {
+            return this.handleUserAuthenticated(state)
+        }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        this.url = state.url
-        
-        if(this.sessionSrvc.isAuthenticated()){
-           return this.handleUserAuthenticated()
-        } 
-           
-        return this.handleUserNotAuthenticated()
+        return this.handleUserNotAuthenticated(state)
     }
 
 }

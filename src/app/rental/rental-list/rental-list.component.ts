@@ -1,9 +1,7 @@
-import { RentalStoreService } from './../shared/rental.store.service';
-import { Component, OnInit } from '@angular/core';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
-import { RentalService } from 'src/app/rental/shared/rental.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {takeUntil} from 'rxjs/operators'
 import { Subject } from 'rxjs/internal/Subject';
+import { RentalStoreService } from 'src/app/rental/shared/services/rental.store.service';
 
 
 @Component({

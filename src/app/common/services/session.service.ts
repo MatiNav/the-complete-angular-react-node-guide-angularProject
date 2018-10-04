@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http/src/response';
-import { RentalStoreService } from 'src/app/rental/shared/rental.store.service';
+import { RentalStoreService } from '../../rental/shared/services/rental.store.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import * as moment from 'moment-mini-ts'
+import * as moment from 'moment'
 import { DecodedToken } from 'src/app/auth/models/decodedToken.model';
 import { SessionStorageService } from 'src/app/common/services/session.storage.service';
 

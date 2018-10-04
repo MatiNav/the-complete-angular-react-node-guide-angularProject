@@ -5,8 +5,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
-import { RentalService } from 'src/app/rental/shared/rental.service';
-import { RentalStoreService } from 'src/app/rental/shared/rental.store.service';
 import { NgPipesModule } from 'ngx-pipes';
 import { UppercasePipe } from 'src/app/common/pipes/uppercase.pipe';
 import { MapModule } from 'src/app/common/map/map.module';
@@ -18,6 +16,12 @@ import { FormsModule } from '@angular/forms';
 import { BookingService } from 'src/app/booking/shared/booking.service';
 import { RentalSearchComponent } from 'src/app/rental/rental-search/rental-search.component';
 import { RentalCreateComponent } from './rental-create/rental-create.component';
+import { RentalEditComponent } from './rental-edit/rental-edit.component';
+import { RentalService } from 'src/app/rental/shared/services/rental.service';
+import { RentalStoreService } from 'src/app/rental/shared/services/rental.store.service';
+import { RouterStateSnapshot } from '@angular/router';
+import { EditGuard } from 'src/app/rental/shared/guards/edit.guard';
+import { ImageUploadModule } from '../common/components/image-upload/image-upload.module';
 
 
 @NgModule({
@@ -29,7 +33,8 @@ import { RentalCreateComponent } from './rental-create/rental-create.component';
         UppercasePipe,
         RentailDetailBookingComponent,
         RentalSearchComponent,
-        RentalCreateComponent
+        RentalCreateComponent,
+        RentalEditComponent
     ],
     imports: [
         CommonModule,
@@ -38,12 +43,14 @@ import { RentalCreateComponent } from './rental-create/rental-create.component';
         RentalRoutingModule,
         Daterangepicker,
         BookingRoutingModule,
+        ImageUploadModule,
         FormsModule
     ],
     providers: [
         RentalService,
         RentalStoreService,
-        BookingService
+        BookingService,
+        EditGuard
     ]
 })
 export class RentalModule { }
