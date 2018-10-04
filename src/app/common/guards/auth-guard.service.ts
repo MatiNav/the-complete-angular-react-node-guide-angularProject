@@ -30,7 +30,6 @@ export class AuthGuard implements CanActivate {
 
     private handleUserNotAuthenticated(state): boolean {
         if (!this.isLoginOrRegisterPage(state)) {
-            debugger
             this.router.navigate(['/auth'])
             return false
         }
