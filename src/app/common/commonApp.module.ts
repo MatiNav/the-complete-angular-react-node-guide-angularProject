@@ -6,6 +6,8 @@ import { SessionService } from "src/app/common/services/session.service";
 import { SessionStorageService } from "src/app/common/services/session.storage.service";
 import { HeaderComponent } from 'src/app/common/components/header/header.component';
 import { CommonModule } from '@angular/common';
+import { AuthGuard } from 'src/app/common/guards/auth-guard.service';
+import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 
 
 
@@ -19,7 +21,8 @@ import { CommonModule } from '@angular/common';
   providers: [
       HelperService,
       SessionService,
-      SessionStorageService
+      SessionStorageService,
+      AuthGuard
   ],
   exports:[
     HeaderComponent

@@ -12,9 +12,9 @@ export class RentalStoreService {
     
 
   constructor() {
-    
   }
 
+  
   private ngOnDestroy(){
     this.destroy$.next(true)
   }

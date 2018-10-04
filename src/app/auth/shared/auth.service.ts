@@ -1,5 +1,4 @@
 import { HttpErrorResponse } from '@angular/common/http/src/response';
-import { RentalStoreService } from 'src/app/rental/shared/rental.store.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';

@@ -3,26 +3,75 @@ const User = require('../model/user')
 const MongooseHelpers = require('../helpers/mongoose')
 
 
-exports.getRentals = function(req, res) {
-    const city = req.query.city
-    const query = city ? {city} : {}
+exports.editRental = function (req, res) {
+    const rentalId = req.params.id
+    const user = res.locals.user
+    const rentalReceived = req.body
 
-        Rental.find(query)
-            .select('-bookings')//cuando hace el find (no findById), es select, y aca va a traer todo menos los bookings, si le agrego uno
-            // por ejemplo ('city') ahi ya me trae especificamente ese. Un dato, no puede tener - y + en el mismo.. (city -bookings)
-            .exec(function (err, foundRentals) {
+    Rental.findById(rentalId)
+        .populate('user')
+        .exec(function (err, foundRental) {
+            if (err) {
+                return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
+            }
+
+            if (user.id !== foundRental.user.id) {
+                return res.status(422).send({ errors: [{ title: 'Wait !!', description: 'This rental doesnt belong to you.' }] })
+            }
+
+            foundRental.set(rentalReceived)
+            foundRental.save(function (err) {
                 if (err) {
                     return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
                 }
 
-                if (!foundRentals.length > 0 && city) {
-                    return res.status(422).send({ errors: [{ title: 'Ups !!', description: 'We have no city with name ' + city }] })
-                } else if (!foundRentals.length > 0 && !city) {
-                    return res.status(422).send({ errors: [{ title: 'Ups !!', description: 'We have no rentals !! '}] })
-                }
-
-                return res.json(foundRentals)
+                res.status(200).send(foundRental)
             })
+        })
+}
+
+exports.verifyUser = function (req, res) {
+    const user = res.locals.user
+    const rentalId = req.params.id
+
+    Rental.findById(rentalId)
+        .populate('user')
+        .exec(function (err, foundRental) {
+
+            if (err) {
+                return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
+            }
+
+            if (user.id !== foundRental.user.id) {
+                return res.status(422).send({ errors: [{ title: 'Wait !!', description: 'This rental doesnt belong to you.' }] })
+            }
+
+            res.json({user: 'verified'})
+
+        })
+}
+
+
+exports.getRentals = function (req, res) {
+    const city = req.query.city
+    const query = city ? { city } : {}
+
+    Rental.find(query)
+        .select('-bookings')//cuando hace el find (no findById), es select, y aca va a traer todo menos los bookings, si le agrego uno
+        // por ejemplo ('city') ahi ya me trae especificamente ese. Un dato, no puede tener - y + en el mismo.. (city -bookings)
+        .exec(function (err, foundRentals) {
+            if (err) {
+                return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
+            }
+
+            if (!foundRentals.length > 0 && city) {
+                return res.status(422).send({ errors: [{ title: 'Ups !!', description: 'We have no city with name ' + city }] })
+            } else if (!foundRentals.length > 0 && !city) {
+                return res.status(422).send({ errors: [{ title: 'Ups !!', description: 'We have no rentals !! ' }] })
+            }
+
+            return res.json(foundRentals)
+        })
 
 }
 
@@ -49,41 +98,41 @@ exports.getRentalsOfUser = function (req, res) {
     const user = res.locals.user
 
 
-    Rental.where({user})
-    .populate('bookings')
-    .exec(function (err, rentalsFound) {
-        if (err) {
-            return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
-        }
+    Rental.where({ user })
+        .populate('bookings')
+        .exec(function (err, rentalsFound) {
+            if (err) {
+                return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
+            }
 
-        return res.json(rentalsFound)
-    })
+            return res.json(rentalsFound)
+        })
 }
 
 
 exports.createRental = function (req, res) {
-    const {title, city, street, category, image, shared, bedrooms, description, dailyRate } = req.body
-    const rental = new Rental({title, city, street, category, image, shared, bedrooms, description, dailyRate })
+    const { title, city, street, category, image, shared, bedrooms, description, dailyRate } = req.body
+    const rental = new Rental({ title, city, street, category, image, shared, bedrooms, description, dailyRate })
     const user = res.locals.user
     rental.user = user
-    
-    Rental.create(rental, function(err, rental){
+
+    Rental.create(rental, function (err, rental) {
         if (err) {
             return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
         }
     })
 
-    User.update({_id: user.id}, {$push: {rentals: rental}}, function(err, rental){
+    User.update({ _id: user.id }, { $push: { rentals: rental } }, function (err, rental) {
         if (err) {
             return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
         }
     })
 
-    res.json(rental)    
+    res.json(rental)
 }
 
 
-exports.deleteRental =  function (req, res) {
+exports.deleteRental = function (req, res) {
     const user = res.locals.user
 
     Rental.findById(req.params.id)
@@ -91,32 +140,32 @@ exports.deleteRental =  function (req, res) {
         .populate({
             path: 'bookings',
             select: 'startAt',
-            match:{startAt:{ $gt: new Date()}}
+            match: { startAt: { $gt: new Date() } }
         })
-        .exec(function (err, foundRental){
+        .exec(function (err, foundRental) {
 
-            if(!foundRental){
-                return res.status(422).send({ errors: [{ title: 'Wait !!', description: 'This rental doesnt exist.' }] })                
+            if (!foundRental) {
+                return res.status(422).send({ errors: [{ title: 'Wait !!', description: 'This rental doesnt exist.' }] })
             }
 
             if (err) {
                 return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
             }
 
-            if(user.id !== foundRental.user.id){
-                    return res.status(422).send({ errors: [{ title: 'Wait !!', description: 'This rental doesnt belong to you.' }] })
+            if (user.id !== foundRental.user.id) {
+                return res.status(422).send({ errors: [{ title: 'Wait !!', description: 'This rental doesnt belong to you.' }] })
             }
 
-            if(foundRental.bookings.length > 0){
-                    return res.status(422).send({ errors: [{ title: 'Wait !!', description: 'This rental has active bookings.' }] })
+            if (foundRental.bookings.length > 0) {
+                return res.status(422).send({ errors: [{ title: 'Wait !!', description: 'This rental has active bookings.' }] })
             }
 
-            foundRental.remove(function(err){
+            foundRental.remove(function (err) {
                 if (err) {
                     return res.status(422).send(MongooseHelpers.normalizeErrors(err.errors))
                 }
 
-                res.json({status:'deleted'})
+                res.json({ status: 'deleted' })
             })
 
         })

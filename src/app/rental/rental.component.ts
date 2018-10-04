@@ -1,6 +1,6 @@
-import { RentalStoreService } from './shared/rental.store.service';
-import { RentalService } from 'src/app/rental/shared/rental.service';
 import { Component, OnInit } from '@angular/core';
+import { RentalStoreService } from 'src/app/rental/shared/services/rental.store.service';
+import { RentalService } from 'src/app/rental/shared/services/rental.service';
 
 @Component({
   selector: 'app-rental',

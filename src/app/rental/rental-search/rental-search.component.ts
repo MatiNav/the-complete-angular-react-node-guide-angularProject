@@ -1,8 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
-import { RentalService } from 'src/app/rental/shared/rental.service';
-import { RentalStoreService } from 'src/app/rental/shared/rental.store.service';
 import { ActivatedRoute } from '@angular/router';
+import { RentalService } from 'src/app/rental/shared/services/rental.service';
+import { RentalStoreService } from 'src/app/rental/shared/services/rental.store.service';
 
 @Component({
   selector: 'app-rental-search',

@@ -93,7 +93,7 @@ exports.register = function (req, res) {
 }
 
 
-exports.authMiddlewate = function (req, res, next) {
+exports.authMiddleware = function (req, res, next) {
     const token = req.headers.authorization
     let userReceived
     if (token) {
@@ -117,7 +117,6 @@ exports.authMiddlewate = function (req, res, next) {
     } else {
         return res.status(422).send({ errors: [{ title: 'Not authorized!', description: 'Please log in' }] })
     }
-
 
 }
 
